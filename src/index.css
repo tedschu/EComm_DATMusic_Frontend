@@ -9,6 +9,39 @@ body {
   padding-top: 80px;
 }
 
-/*  STYLING FOR NAV */
+/* NAV BAR STYLING */
 
-/* STYLING FOR PRODUCT PAGES */
+nav {
+  height: 70px;
+  width: 100%;
+  background: rgb(34, 214, 255);
+  display: grid;
+  grid-template-columns: [first] 25% [line2] 50% [line3] 25%;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  /* padding: 0 15px; */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.logo > img {
+  max-height: 70px;
+}
+
+.userLogo > a {
+  color: darkblue;
+}
