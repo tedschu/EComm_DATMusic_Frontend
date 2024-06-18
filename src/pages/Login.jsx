@@ -22,18 +22,23 @@ function Login() {
     try {
     const response = await fetch('http://localhost:8080/api/users/login', {
       method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      body: JSON.stringify({ email: "testemail@gmail.com", password: "testpassword" }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      })
     
     })
 
     const data = await response.json();
+    console.log("Response data on Login:", data);
 
     if (response.ok) {
               localStorage.setItem('token', data.token);
               setToken(data.token);
+              console.log ("Successfully Logged In!", data.token)
               setSuccessMessage(data.message);
               setUsername("");
               setPassword("");
@@ -51,7 +56,7 @@ function Login() {
     <form className = "login-form" onSubmit={handleSubmit}>
       <h2> Login To Your DAT Music Account </h2>
       <h3>Enter your Username</h3>
-    <input type = "email" value = {email} onChange={(e)=> setUsername(e.target.value)} placeholder={"Email"} />
+    <input type = "username" value = {username} onChange={(e)=> setUsername(e.target.value)} placeholder={"Enter Your Username"} />
     <h3>Enter Password</h3>
     <input type = "password" value = {password} onChange={(e)=> setPassword(e.target.value)} placeholder={"Password"} />
     <br></br>
