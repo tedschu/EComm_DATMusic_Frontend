@@ -45,3 +45,7 @@ nav {
 .userLogo > a {
   color: darkblue;
 }
+
+.cartLogo {
+  padding-left: 10px;
+}
