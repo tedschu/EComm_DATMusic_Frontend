@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ProductFilter from "../components/ProductFilter";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -47,6 +48,13 @@ function Products() {
     //console.log(value);
   };
 
+  // Can be the basis for a filter menu that allows the user to filter items by category (or brand)
+  // Needs to update setFilteredProducts state
+  // Need to figure out the HTML / menu interaction point
+  const showGuitarsArray = products.filter((product) => {
+    return product.product_category === "drums";
+  });
+
   return (
     <>
       <div className="searchContainer">
@@ -64,7 +72,7 @@ function Products() {
         </div>
       </div>
       <div className="productPageContainer">
-        {/* <div className="leftMenu">This is the selecton menu</div> */}
+        {/* <ProductFilter /> */}
         <div className="productListContainer">
           {noSearchResults && (
             <h2>There are no products that match your search</h2>
