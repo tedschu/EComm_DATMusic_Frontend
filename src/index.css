@@ -1,3 +1,7 @@
+* {
+  font-family: sans-serif;
+}
+
 body {
   background-color: white;
   margin: 0;
@@ -6,7 +10,7 @@ body {
 }
 
 #root {
-  padding-top: 80px;
+  padding-top: 85px;
 }
 
 /* NAV BAR STYLING */
@@ -24,6 +28,7 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
+  box-shadow: 3px 3px 3px rgb(220, 220, 220);
 }
 
 .navLinks {

@@ -23,7 +23,7 @@
 .productContainer {
   background: white;
   width: 300px;
-  height: 490px;
+  height: 500px;
   margin: 5px;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,10 @@
   border-radius: 8px;
   padding: 5px;
   padding-bottom: 15px;
+}
+
+.productContainer > h2 {
+  font-size: 20px;
 }
 
 .link {
@@ -124,7 +128,6 @@ button {
   border: none;
   border-radius: 9px;
   height: 30px;
-  font-family: Raleway;
   padding-left: 10px;
   font-size: 18px;
 }
