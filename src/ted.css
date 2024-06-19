@@ -30,14 +30,18 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid rgb(187, 168, 195);
+  border: 1px solid rgb(198, 198, 198);
   border-radius: 8px;
   padding: 5px;
   padding-bottom: 15px;
 }
 
+.productContainer:hover {
+  border: 1px solid rgb(92, 0, 98);
+}
+
 .productContainer > h2 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .link {
@@ -63,15 +67,19 @@
 
 .productDetailContainer {
   background: white;
-  width: 90%;
+  width: 80%;
   margin: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-
+  color: black;
   padding: 8px;
   padding-bottom: 15px;
+}
+
+.productDetailContainer > p {
+  color: rgb(103, 103, 103);
 }
 
 .productDetailContainer > img {
@@ -120,6 +128,10 @@ button {
   border-radius: 8px;
   align-items: center;
   padding: 8px;
+}
+
+.searchBar:hover {
+  border: 2px solid rgb(23, 179, 215);
 }
 
 .searchBar > input {

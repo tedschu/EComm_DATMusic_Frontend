@@ -10,6 +10,7 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
 import SingleProduct from "./pages/SingleProduct";
+import ProductFilter from "./components/ProductFilter";
 
 function App() {
   // Will use eventually to handle logged-in state, which we will pass down to individual pages / components (ex. account)
