@@ -46,12 +46,13 @@ function Login({setIsLoggedIn}) {
               setPassword("");
               setIsLoggedIn(true);
               navigate("/");
-    } else {
-        setError(data.message || "Login failed");
-    } catch (err) {
-      setError(err.message);
-    }
-  }
+            } else {
+              setError(data.message || "Login failed");
+            }
+          } catch (err) {
+            setError(err.message);
+          }
+        }
 
   return (
     <div className = "Login">
