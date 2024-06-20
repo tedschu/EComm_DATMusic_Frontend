@@ -13,18 +13,33 @@ import SingleProduct from "./pages/SingleProduct";
 import ProductFilter from "./components/ProductFilter";
 
 function App() {
-  // Will use eventually to handle logged-in state, which we will pass down to individual pages / components (ex. account)
-  //const [count, setCount] = useState(0);
+  // PARENT STATE TO MANAGE LOGGED-IN STATUS.
+  // Passes "setisLoggedIn" as props to Login , which accepts it as props and can update in onClick or onSubmit event
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // ALSO NEEDS A STATE VALUE FOR CART
+  // If a user adds something to their cart, this can update a value next to the cart to show the items in their cart (ex. "1")
+  //const [numCartItems, setNumCartItems] = useState(0)
 
   return (
     <>
       <Nav />
 
       <Routes>
+        {/* OTHER COMPONENTS LIKE PRODUCTS CAN THEN USE THE "ISLOGGEDIN" STATE VALUE */}
+        {/* <Route index element={<Products isLoggedIn={isLoggedIn} />} /> */}
+
         <Route index element={<Products />} />
         <Route path="/account" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+
+        {/* PASSING SETISLOGGEDIN TO THE LOGIN COMPONENT - DELETE OR UPDATE EXISTING LOGIN PATH */}
+        {/* <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        /> */}
+
         <Route path="/login" element={<Login />} />
         <Route path="/orderconfirmation" element={<OrderConfirmation />} />
         <Route path="/register" element={<Register />} />

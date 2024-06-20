@@ -7,10 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
-
-// import any other dependent files here (ex. checkout)
-
-function Login() {
+function Login({setIsLoggedIn}) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,26 +18,24 @@ function Login() {
   const location = useLocation();
   const registrationSuccessMessage = location.state?.registrationSuccessMessage || '';
 
-
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
 
     try {
-    const response = await fetch('http://localhost:8080/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      })
-    
-    })
+      const response = await fetch("http://localhost:8080/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-    const data = await response.json();
-    console.log("Response data on Login:", data);
+      const data = await response.json();
+      console.log("Response data on Login:", data);
 
     if (response.ok) {
               localStorage.setItem('token', data.token);
@@ -49,15 +44,14 @@ function Login() {
               setSuccessMessage(data.message);
               setUsername("");
               setPassword("");
+              setIsLoggedIn(true);
               navigate("/");
     } else {
-          setError(data.message || "Login failed");
-    }
+        setError(data.message || "Login failed");
     } catch (err) {
-          setError(err.message);
+      setError(err.message);
     }
   }
-
 
   return (
     <div className = "Login">
@@ -71,7 +65,7 @@ function Login() {
     <br></br>
     <button type = "submit">Login to DAT Music</button>
     <br></br>
-    <Link to={"/register"} className="userLogo">New User? Click Here To Register to DAT Music</Link>
+    <Link to={"/register"} className="new-user-reg">New User? Click Here To Register to DAT Music</Link>
     </form>
     </div> 
     );
