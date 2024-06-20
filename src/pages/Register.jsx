@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [first_name, setFirstName] = useState("");
@@ -10,6 +11,7 @@ function Register() {
   const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -42,6 +44,8 @@ function Register() {
         setAddress("");
         setUsername("");
         setPassword("");
+        navigate('/login', { state: { registrationSuccessMessage: 'Successfully Registered' } });
+
       } else {
         throw new Error(data.message || "Registration failed");
       }
