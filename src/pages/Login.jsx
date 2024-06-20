@@ -44,14 +44,15 @@ function Login({setIsLoggedIn}) {
               setSuccessMessage(data.message);
               setUsername("");
               setPassword("");
-              setIsLoggedIn(true);
               navigate("/");
-    } else {
-        setError(data.message || "Login failed");
-    } catch (err) {
-      setError(err.message);
-    }
-  }
+              setIsLoggedIn(true);
+            } else {
+              setError(data.message || "Login failed");
+            }
+          } catch (err) {
+            setError(err.message);
+          }
+        }
 
   return (
     <div className = "Login">
