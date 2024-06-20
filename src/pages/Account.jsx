@@ -4,14 +4,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 // import any other dependent files here (ex. checkout)
 
-function Account() {
+function Account({isLoggedIn}) {
 
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const token = localStorage.getItem('token');
+  const navigate = useNavigate(); 
 
   useEffect(()=> {
     if (token) {
@@ -43,11 +44,17 @@ function Account() {
   }
 };
 
+// reloads the page after logging out 
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  window.location.reload();
+};
 
 if (!token) {
-  return <div>
-          Please Login to View your Account Information
-        </div>;
+  return <div className="please-login">
+          <Link to={"/login"}>Please Login to DAT Music to View Account Information</Link>
+        </div>
+        ;
 }
 
 return (
@@ -60,6 +67,7 @@ return (
               <p><strong>Last Name:</strong> {userData.last_name}</p>
               <p><strong>Address:</strong> {userData.address}</p>
               <p><strong>Username:</strong> {userData.username}</p>
+              <button onClick={handleLogout}>Log Out</button>
           </div>
       ) : (
           <p>Loading...</p>

@@ -52,3 +52,37 @@
 .register-form > input {
     width: 200px;
 }
+
+/* ACCOUNT PAGE STYLING */
+
+
+div.Account {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    background: rgba(34, 214, 255, 0.383);
+    box-sizing: border-box;
+    border-radius: 50px; 
+    padding: 20px;
+}
+
+div.Account > div > button {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+}
+
+div.Account > div > button:hover{
+    background: rgb(34, 214, 255);
+}
+
+div.please-login {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    color: black;
+}

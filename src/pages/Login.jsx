@@ -44,8 +44,8 @@ function Login({setIsLoggedIn}) {
               setSuccessMessage(data.message);
               setUsername("");
               setPassword("");
-              setIsLoggedIn(true);
               navigate("/");
+              setIsLoggedIn(true);
             } else {
               setError(data.message || "Login failed");
             }
