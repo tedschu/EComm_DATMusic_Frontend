@@ -7,6 +7,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductFilter from "../components/ProductFilter";
 
+// PRODUCTS COMPONENT NOW TAKES IN "ISLOGGEDIN" PROPS TO USE (EX. FOR "LOGIN" TEXT, OR IN OTHER USES, FOR CART)
 function Products() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
