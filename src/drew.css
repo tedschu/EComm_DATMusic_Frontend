@@ -1,0 +1,54 @@
+
+/* LOGIN PAGE STYLING */
+
+
+.login-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin: 75px;
+    background: rgba(34, 214, 255, 0.383);
+    box-sizing: border-box;
+    border-radius: 50px; 
+    padding: 20px;
+}
+
+.login-form > button {
+    background-color: black;
+}
+
+.login-form > button:hover {
+    background: rgb(34, 214, 255);
+}
+
+.login-form > input {
+    width: 200px;
+}
+
+/* REGISTER FORM STYLING */
+
+
+.register-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    background: rgba(34, 214, 255, 0.383);
+    box-sizing: border-box;
+    border-radius: 50px; 
+    padding: 20px;
+}
+
+.register-form > button {
+    background-color: black;
+}
+
+.register-form > button:hover {
+    background: rgb(34, 214, 255);
+}
+
+.register-form > input {
+    width: 200px;
+}
