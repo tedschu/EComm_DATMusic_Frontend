@@ -111,7 +111,8 @@ function Products() {
     }
   }, [filters, products]);
 
-  console.log("This is the filtered products: ", filteredProducts);
+  // console.log("This is the filtered products: ", filteredProducts);
+  // console.log("This is the products: ", products);
 
   return (
     <>
