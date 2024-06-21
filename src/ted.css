@@ -78,6 +78,7 @@
 
 .productDetailContainer > img {
   max-height: 650px;
+  border-radius: 6px;
 }
 
 .singleProductPageContainer {
