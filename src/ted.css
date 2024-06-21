@@ -14,12 +14,6 @@
   width: 100%;
 }
 
-.leftMenu {
-  background: sienna;
-  /* width: 200px; */
-  min-width: 10%;
-}
-
 .productContainer {
   background: white;
   width: 300px;
@@ -150,4 +144,28 @@ button {
 
 .searchIcon {
   color: rgb(34, 214, 255);
+}
+
+/* PRODUCT PAGE FILTER MENU */
+.leftMenu {
+  /* background: sienna; */
+  /* width: 200px; */
+  min-width: 130px;
+  padding: 7px;
+  border-right: 1px solid lightgray;
+  color: black;
+}
+
+.leftMenu > h3,
+h4 {
+  font-weight: normal;
+}
+
+.filterMenu > label {
+  font-size: 14px;
+}
+
+.filterMenu {
+  border-top: 1px solid lightgray;
+  padding-bottom: 15px;
 }
