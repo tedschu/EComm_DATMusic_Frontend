@@ -5,7 +5,8 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo.jpeg";
 
-function Nav() {
+
+function Nav({isLoggedIn}) {
   return (
     <>
       <nav>
@@ -14,9 +15,10 @@ function Nav() {
           <img src={logo} />
         </Link>
         <div className="navLinks">
-          <Link to={"/login"} className="userLogo">
+          {!isLoggedIn && ( <Link to={"/login"} className="userLogo">
             <FontAwesomeIcon icon={faUser} size={"2x"} />
-          </Link>
+          </Link>)}
+          {isLoggedIn && <Link to="/account">My Account</Link>}
           <Link to={"/cart"} className="cartLogo">
             <FontAwesomeIcon icon={faCartShopping} size={"2x"} />
           </Link>

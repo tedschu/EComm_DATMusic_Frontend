@@ -7,10 +7,10 @@ import CartItems from "../components/CartItems";
 
 // import any other dependent files here (ex. checkout)
 
-function Cart() {
+function Cart({isLoggedIn}) {
   const [cart, setCart] = useState([]);
   // make total state
-  const [cartTotal, setCartTotal] = useState(0);
+  // const [cartTotal, setCartTotal] = useState(0);
 
 
   //fetch current cart from the api
@@ -57,8 +57,13 @@ function Cart() {
           }
       </div>
 
-      <div id="sidebar">
+      <div id="cartSidebar">
+        <h1>Total:</h1>
+
+        {isLoggedIn?<Link to={"/checkout"}><button>Checkout</button></Link>:<Link to={"/register"}><button>Register to Checkout</button></Link>}
+        
       </div>
+
     </div>
     </>
   );

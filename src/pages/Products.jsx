@@ -3,15 +3,24 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import ProductFilter from "../components/ProductFilter";
+import SearchBar from "../components/SearchBar";
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filters, setFilters] = useState({
+    guitars: false,
+    drums: false,
+    pianos: false,
+    less1000: false,
+    between10002000: false,
+    above2000: false,
+  });
   const [noSearchResults, setNoSearchResults] = useState(false);
-  const [value, setValue] = useState("");
+  const [searchArray, setSearchArray] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   // Grabs products from the database, updates products and filteredProducts states
   useEffect(() => {
@@ -30,52 +39,29 @@ function Products() {
 
   //console.log(filteredProducts[0].product_name);
 
-  // Updates filteredProducts when there are search results
-  useEffect(() => {
-    const searchResultArray = products.filter((product) =>
-      product.product_name.toLowerCase().includes(value.toLowerCase())
-    );
-    //console.log(searchResultArray);
-
-    setFilteredProducts(searchResultArray);
-    searchResultArray.length === 0 && setNoSearchResults(true); // TRIGGERS "NO RESULTS" TEXT BASED ON WHETHER RESULT ARRAY IS EMPTY OR NOT
-    searchResultArray.length > 0 && setNoSearchResults(false);
-  }, [value, products]);
-
-  // Search bar results
-  const setResults = (e) => {
-    setValue(e.target.value);
-    //console.log(value);
-  };
-
-  // Can be the basis for a filter menu that allows the user to filter items by category (or brand)
-  // Needs to update setFilteredProducts state
-  // Need to figure out the HTML / menu interaction point
-  const showGuitarsArray = products.filter((product) => {
-    return product.product_category === "drums";
-  });
-
   return (
     <>
-      <div className="searchContainer">
-        <div className="searchBar">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            size={"1x"}
-            className="searchIcon"
-          />
-          <input
-            type="text"
-            placeholder="Search for your gear..."
-            onChange={setResults}
-          />
-        </div>
-      </div>
+      <SearchBar
+        products={products}
+        setFilteredProducts={setFilteredProducts}
+        setSearchArray={setSearchArray}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        setNoSearchResults={setNoSearchResults}
+      />
+
       <div className="productPageContainer">
-        {/* <ProductFilter /> */}
+        <ProductFilter
+          searchArray={searchArray}
+          setFilteredProducts={setFilteredProducts}
+          filters={filters}
+          products={products}
+          setFilters={setFilters}
+          searchValue={searchValue}
+        />
         <div className="productListContainer">
-          {noSearchResults && (
-            <h2>There are no products that match your search</h2>
+          {filteredProducts.length === 0 && (
+            <h2>There are no products based on these criteria</h2>
           )}
           {filteredProducts.map((product) => (
             <Link
