@@ -7,8 +7,8 @@ import "./index.css";
 
 // CSS imports: CONSOLIDATE ALL INTO INDEX.CSS AT END OF PROJECT
 // import "./ted.css";
-// import "./anthony.css";
-import "./drew.css";
+import "./anthony.css";
+//import "./drew.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
