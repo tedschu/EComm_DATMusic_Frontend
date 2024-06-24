@@ -3,9 +3,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import ProductFilter from "../components/ProductFilter";
+import SearchBar from "../components/SearchBar";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -39,170 +39,26 @@ function Products() {
 
   //console.log(filteredProducts[0].product_name);
 
-  // Updates filteredProducts when there are search results
-  useEffect(() => {
-    const searchResultArray = products.filter((product) =>
-      product.product_name.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    //console.log(searchResultArray);
-
-    setFilteredProducts(searchResultArray);
-    setSearchArray(searchResultArray);
-    searchResultArray.length === 0 && setNoSearchResults(true); // TRIGGERS "NO RESULTS" TEXT BASED ON WHETHER RESULT ARRAY IS EMPTY OR NOT
-    searchResultArray.length > 0 && setNoSearchResults(false);
-  }, [searchValue, products]);
-
-  // Search bar results
-  const setResults = (e) => {
-    setSearchValue(e.target.value);
-    //console.log(value);
-  };
-
-  // Filter menu on left side that updates filteredProducts based on criteria selected
-  // Needs to update setFilteredProducts state
-  // Need to figure out the HTML / menu interaction point
-  const handleFilterChange = (event) => {
-    const { name, checked } = event.target;
-
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [name]: checked,
-    }));
-  };
-
-  useEffect(() => {
-    const applyFilters = (productsToFilter) => {
-      return productsToFilter.filter((product) => {
-        const categoryMatch =
-          (!filters.guitars && !filters.drums && !filters.pianos) ||
-          (filters.guitars && product.product_category === "guitars") ||
-          (filters.drums && product.product_category === "drums") ||
-          (filters.pianos && product.product_category === "pianos");
-
-        const priceMatch =
-          (!filters.less1000 &&
-            !filters.between10002000 &&
-            !filters.above2000) ||
-          (filters.less1000 && product.price < 1000) ||
-          (filters.between10002000 &&
-            product.price >= 1000 &&
-            product.price < 2000) ||
-          (filters.above2000 && product.price >= 2000);
-
-        return categoryMatch && priceMatch;
-      });
-    };
-
-    if (
-      !filters.guitars &&
-      !filters.drums &&
-      !filters.pianos &&
-      !filters.less1000 &&
-      !filters.between10002000 &&
-      !filters.above2000
-    ) {
-      setFilteredProducts(products);
-    } else if (searchValue !== "") {
-      const filteredProducts = applyFilters(searchArray);
-      setFilteredProducts(filteredProducts);
-    } else {
-      const filteredProducts = applyFilters(products);
-      setFilteredProducts(filteredProducts);
-    }
-  }, [filters, products]);
-
-  // console.log("This is the filtered products: ", filteredProducts);
-  // console.log("This is the products: ", products);
-
   return (
     <>
-      <div className="searchContainer">
-        <div className="searchBar">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            size={"1x"}
-            className="searchIcon"
-          />
-          <input
-            type="text"
-            placeholder="Search for your gear..."
-            onChange={setResults}
-          />
-        </div>
-      </div>
+      <SearchBar
+        products={products}
+        setFilteredProducts={setFilteredProducts}
+        setSearchArray={setSearchArray}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        setNoSearchResults={setNoSearchResults}
+      />
+
       <div className="productPageContainer">
-        <div className="leftMenu">
-          <h3>Refine your search</h3>
-
-          <div className="filterMenu Category">
-            <h4>Categories</h4>
-            {/* CHECKBOXES FOR PRODUCT CATEGORIES */}
-            <input
-              type="checkbox"
-              id="guitars"
-              name="guitars"
-              value="guitars"
-              checked={filters.guitars}
-              onChange={handleFilterChange}
-            />
-            <label for="guitars">Guitars</label>
-            <br></br>
-            <input
-              type="checkbox"
-              id="drums"
-              name="drums"
-              value="drums"
-              onChange={handleFilterChange}
-              checked={filters.drums}
-            />
-            <label for="drums">Drums</label>
-            <br></br>
-            <input
-              type="checkbox"
-              id="pianos"
-              name="pianos"
-              value="pianos"
-              onChange={handleFilterChange}
-              checked={filters.pianos}
-            />
-            <label for="pianos">Pianos</label>
-            <br></br>
-          </div>
-
-          {/* CHECKBOXES FOR PRICE FILTERS */}
-          <div className="filterMenu Price">
-            <h4>Price range</h4>
-            <input
-              type="checkbox"
-              id="less1000"
-              name="less1000"
-              value="less1000"
-              checked={filters.less1000}
-              onChange={handleFilterChange}
-            />
-            <label for="less1000">$1,000 or less</label>
-            <br></br>
-            <input
-              type="checkbox"
-              id="between10002000"
-              name="between10002000"
-              value="between10002000"
-              onChange={handleFilterChange}
-              checked={filters.between10002000}
-            />
-            <label for="between10002000">$1,000-$2,000</label>
-            <br></br>
-            <input
-              type="checkbox"
-              id="above2000"
-              name="above2000"
-              value="above2000"
-              onChange={handleFilterChange}
-              checked={filters.above2000}
-            />
-            <label for="above2000">$2,000+</label>
-          </div>
-        </div>
+        <ProductFilter
+          searchArray={searchArray}
+          setFilteredProducts={setFilteredProducts}
+          filters={filters}
+          products={products}
+          setFilters={setFilters}
+          searchValue={searchValue}
+        />
         <div className="productListContainer">
           {filteredProducts.length === 0 && (
             <h2>There are no products based on these criteria</h2>
