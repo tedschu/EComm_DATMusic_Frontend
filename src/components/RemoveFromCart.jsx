@@ -1,12 +1,25 @@
 // "Remove from cart" button
 // Function(s) need to update cart state
 
-function RemoveFromCart() {
+function RemoveFromCart({product}) {
   //   // Function to update order (ex. total_order_revenue in orders table) and cart (order_items table)
-  //   async function runRemoveFromCart() {}
+    async function runRemoveFromCart(product) {
+        const response = await fetch(`http://localhost:8080/api/order_items/1/${product}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        console.log(response)
+        window.location.reload();
+    }
 
   return (
-    <>{/* <button onClick={runRemoveFromCart}>Remove from cart</button> */}</>
+    <>
+      <button onClick={()=>runRemoveFromCart(product)}>-</button>
+    </>
   );
 }
 
