@@ -8,11 +8,58 @@ import CartItems from "../components/CartItems";
 // import any other dependent files here (ex. checkout)
 
 function Cart() {
+  const [cart, setCart] = useState([]);
+  // make total state
+  const [cartTotal, setCartTotal] = useState(0);
+
+
+  //fetch current cart from the api
+  useEffect(() => {
+    async function getCart() {
+      const response = await fetch("http://localhost:8080/api/order_items/1", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+        const data = await response.json();
+        console.log(data);
+        //store cart in state
+        setCart(data.cart);
+    };
+    getCart(); 
+  }, []);
+  // console.log(cart)
+  
+  let total = 0;
+  // total+=cartTotal;
+
+
+
+
+
+
   return (
     <>
-      <h1>This is the cart page</h1>
+    <div id="cart">
+      <div id="currentOrder">   
+          {
+            
+            cart.length?cart.map((i)=> (
+              <div className="cartItemCard" key={i.order_items_id}>
+                {
+                  <div>
+                  <CartItems product_id={i.product_id}  total={total} quantity={i.order_items_quantity}/>
+                  {/* {i.order_items_quantity} */}
+                  </div>
+                }
+              </div>
+            )):<h1>Items you have added to your cart will appear here.</h1>
+          }
+      </div>
 
-      {/* <CartItems /> */}
+      <div id="sidebar">
+      </div>
+    </div>
     </>
   );
 }

@@ -3,6 +3,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import AddToCart from "../components/AddToCart";
 
 // import any other dependent files here (ex. checkout)
 
@@ -50,7 +51,7 @@ function SingleProduct() {
               <Link to={"/"}>
                 <button>Back to products</button>
               </Link>
-              <button className="cartButton">Add to cart</button>
+              <AddToCart product={product.product_id}/>
             </div>
           </div>
         </div>
