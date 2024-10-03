@@ -3,6 +3,15 @@ import { useState, useEffect } from "react";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+type SearchBarProps = {
+  products: any[]; // For now, we'll use 'any[]' for products
+  setFilteredProducts: (products: any[]) => void;
+  setSearchArray: (products: any[]) => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  setNoSearchResults: (value: boolean) => void;
+};
+
 function SearchBar({
   products,
   setFilteredProducts,
@@ -26,9 +35,8 @@ function SearchBar({
   }, [searchValue, products]);
 
   // Search bar results
-  const setResults = (e) => {
+  const setResults = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-    //console.log(value);
   };
 
   return (
