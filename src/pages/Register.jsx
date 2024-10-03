@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [first_name, setFirstName] = useState("");
@@ -15,7 +15,7 @@ function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     try {
       const response = await fetch("http://localhost:8080/api/users/register", {
         method: "POST",
@@ -31,10 +31,9 @@ function Register() {
         }),
       });
 
-
       const data = await response.json();
-      console.log(data)
-      
+      console.log(data);
+
       if (response.ok) {
         localStorage.setItem("token", data.token);
         setToken(data.token);
@@ -44,8 +43,9 @@ function Register() {
         setAddress("");
         setUsername("");
         setPassword("");
-        navigate('/login', { state: { registrationSuccessMessage: 'Successfully Registered' } });
-
+        navigate("/login", {
+          state: { registrationSuccessMessage: "Successfully Registered" },
+        });
       } else {
         throw new Error(data.message || "Registration failed");
       }
@@ -53,12 +53,13 @@ function Register() {
       setError(err.message);
     }
   }
-  
 
   return (
     <div className="Register">
       <form className="register-form" onSubmit={handleSubmit}>
-        <h3>Welcome! Please Fill Out The Below Fields to Register To DAT Music.</h3>
+        <h3>
+          Welcome! Please Fill Out The Below Fields to Register To DAT Music.
+        </h3>
         {error && <p style={{ color: "red" }}>{error}</p>}
         {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
         <input
@@ -93,7 +94,9 @@ function Register() {
         />
         <br />
         <button type="submit">Submit</button>
-        <button onClick={() => localStorage.removeItem("token")}>Log Out</button>
+        <button onClick={() => localStorage.removeItem("token")}>
+          Log Out
+        </button>
       </form>
     </div>
   );
